@@ -1,0 +1,26 @@
+
+
+# Rank the open prices
+df['rank_open'] = df['open'].rank(axis=1, pct=True)
+# Calculate the time-series min of the ranked open prices over the past 5 days
+df['ts_min_rank_open_5'] = df['rank_open'].rolling(window=5).min()
+# Rank the results
+df['rank_ts_min_rank_open_5'] = df['ts_min_rank_open_5'].rank(axis=1, pct=True)
+
+# Rank the volume
+df['rank_volume'] = df['volume'].rank(axis=1, pct=True)
+# Calculate the sum of the ranked volume over the past 5 days
+df['sum_rank_volume_5'] = df['rank_volume'].rolling(window=5).sum()
+# Rank the results
+df['rank_sum_rank_volume_5'] = df['sum_rank_volume_5'].rank(axis=1, pct=True)
+# Calculate the signed power of the ranked sum of volume
+df['signedpower_rank_sum_volume_5'] = df['rank_sum_rank_volume_5'] ** 0.5
+
+# Rank the correlation of volume and high prices over the past 3 days
+df['correlation_rank_volume_high_3'] = df['volume'].rolling(window=3).corr(df['high']).rank(axis=1, pct=True)
+
+# Calculate the standard deviation of the ranked high prices over the past 3 days
+df['stddev_rank_high_3'] = df['high'].rank(axis=1, pct=True).rolling(window=3).std()
+
+# Combine and rank the factors, then apply the alpha formula
+df['alpha'] = (-1 * df['rank_ts_min_rank_open_5'].rank(axis=1, pct=True) * df['signedpower_rank_sum_volume_5'] * df['correlation_rank_volume_high_3'] / df['stddev_rank_high_3']).rank(axis=1, pct=True)

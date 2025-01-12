@@ -1,0 +1,10 @@
+
+
+# Rank the standard deviation of opening prices over the past 10 days
+df['rank_stddev_open_10'] = df['open'].rolling(window=10).std().rank(axis=1, pct=True)
+# Apply signedpower to the ranked standard deviation
+df['signedpower_rank_stddev_open_10'] = df['rank_stddev_open_10'] ** 3
+# Rank the volume over the past 5 days
+df['ts_rank_volume_5'] = df['volume'].rolling(window=5).apply(lambda x: (x[-1] - min(x)) / (max(x) - min(x)), raw=True)
+# Multiply the signedpower and ts_rank factors to obtain the mutated alpha
+df['alpha'] = pd.DataFrame(df['signedpower_rank_stddev_open_10'] * df['ts_rank_volume_5'])

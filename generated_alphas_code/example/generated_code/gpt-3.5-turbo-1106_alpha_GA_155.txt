@@ -1,0 +1,1 @@
+New Mutate Alpha: ts_min((-1 * rank(stddev(high, 10))) * correlation(rank(volume), high, 10), 15) * rank(open) / abs(delta(volume, 5))

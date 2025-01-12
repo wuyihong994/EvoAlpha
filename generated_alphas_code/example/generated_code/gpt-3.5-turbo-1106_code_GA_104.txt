@@ -1,0 +1,13 @@
+
+
+# Calculate the change in returns over 3 days
+df['returns_change_3d'] = df['close'].pct_change(periods=3)
+# Rank the change in returns over 3 days
+df['returns_change_3d_rank'] = df['returns_change_3d'].rank(axis=1, pct=True)
+# Rank the open price and volume
+df['open_rank'] = df['open'].rank(axis=1, pct=True)
+df['volume_rank'] = df['volume'].rank(axis=1, pct=True)
+# Calculate the product of open price and volume ranks
+df['open_volume_rank_product'] = df['open_rank'] * df['volume_rank']
+# Divide the rank of the change in returns over 3 days by the product of open price and volume ranks
+df['alpha'] = df['returns_change_3d_rank'] / df['open_volume_rank_product']

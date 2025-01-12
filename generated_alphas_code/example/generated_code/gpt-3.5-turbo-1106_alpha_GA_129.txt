@@ -1,0 +1,1 @@
+(-1 * ts_argmin(rank(correlation(rank(open), rank(returns), 5)), 5))

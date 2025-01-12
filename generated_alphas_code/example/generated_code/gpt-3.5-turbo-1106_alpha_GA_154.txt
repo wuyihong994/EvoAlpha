@@ -1,0 +1,1 @@
+Mutate Alpha: delay(rank(correlation(volume, high, 5)), 3) - sum(volume, 10)

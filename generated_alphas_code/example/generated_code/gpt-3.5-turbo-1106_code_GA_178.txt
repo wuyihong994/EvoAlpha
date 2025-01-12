@@ -1,0 +1,16 @@
+
+
+# Calculate the standard deviation of open prices over a 10-day period
+df['stddev_open_10'] = df['open'].rolling(window=10).std()
+# Rank the volume
+df['rank_volume'] = df['volume'].rank(axis=1, pct=True)
+# Calculate the correlation of the ranked volume with the standard deviation of open prices over a 10-day period
+df['correlation_stddev_open_volume_10'] = df['stddev_open_10'].rolling(window=10).corr(df['rank_volume'])
+# Rank the correlation results
+df['rank_correlation'] = df['correlation_stddev_open_volume_10'].rank(axis=1, pct=True)
+# Calculate the maximum value over the past 5 days
+df['ts_max_rank_correlation'] = df['rank_correlation'].rolling(window=5).max()
+# Calculate the absolute difference between the previous day's closing price and the current day's closing price
+df['abs_delay_close_1'] = abs(df['close'] - df['close'].shift(1))
+# Compute the final alpha by combining the previous calculations
+df['alpha'] = (-1 * df['ts_max_rank_correlation']) + df['abs_delay_close_1']

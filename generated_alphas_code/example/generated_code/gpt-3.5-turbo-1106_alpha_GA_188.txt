@@ -1,0 +1,1 @@
+Mutate Alpha: ((-1 * rank(sum(rank(rank(volume)), 3))) * correlation(high, volume, 10))

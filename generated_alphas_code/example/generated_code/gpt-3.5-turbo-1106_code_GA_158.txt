@@ -1,0 +1,14 @@
+
+
+# Calculate the standard deviation of high prices over a 10-day period
+df['stddev_high_10'] = df['high'].rolling(window=10).std()
+# Calculate the correlation between open prices and volume over a 10-day period
+df['correlation_open_volume_10'] = df['open'].rolling(window=10).corr(df['volume'])
+# Rank the standard deviation of high prices
+df['rank_stddev_high_10'] = df['stddev_high_10'].rank(axis=1, pct=True)
+# Rank open prices
+df['rank_open'] = df['open'].rank(axis=1, pct=True)
+# Calculate daily returns
+df['returns'] = df['close'].pct_change()
+# Compute the alpha
+df['alpha'] = ((-1 * df['rank_stddev_high_10']) * df['correlation_open_volume_10'] * df['rank_open'] * df['returns'])

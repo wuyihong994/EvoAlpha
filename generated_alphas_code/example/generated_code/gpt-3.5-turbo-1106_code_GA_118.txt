@@ -1,0 +1,11 @@
+
+
+# Compute the rank of the high and volume features
+df['rank_high'] = df['high'].rank(axis=1, pct=True)
+df['rank_volume'] = df['volume'].rank(axis=1, pct=True)
+# Compute the covariance of the ranked high and volume features over the past 5 days
+df['cov_rank_high_volume_5'] = df['rank_high'].rolling(window=5).cov(df['rank_volume'])
+# Compute the minimum value of the covariance over the past 5 days, then delay it by 3 days
+df['delayed_min_cov_rank_high_volume_5'] = df['cov_rank_high_volume_5'].rolling(window=5).min().shift(3)
+# Multiply the result by 1
+df['alpha'] = 1 * df['delayed_min_cov_rank_high_volume_5']

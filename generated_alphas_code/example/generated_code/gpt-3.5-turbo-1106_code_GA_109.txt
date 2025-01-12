@@ -1,0 +1,11 @@
+
+
+# Rank the volume and high features
+rank_volume = df['volume'].rank(axis=1, pct=True)
+rank_high = df['high'].rank(axis=1, pct=True)
+# Calculate the correlation of the ranked volume and high over the past 3 days
+correlation_ranked = df['volume'].rolling(window=3).corr(df['high'])
+# Rank the correlation results
+ranked_correlation = correlation_ranked.rank(axis=1, pct=True)
+# Sum the ranked correlation over the past 3 days, then multiply by -1
+df['alpha'] = -1 * pd.DataFrame(ranked_correlation.rolling(window=3).sum())

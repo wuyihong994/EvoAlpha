@@ -1,0 +1,15 @@
+
+
+# Mutate Alpha: (delay(returns, 2) * (-1 * rank(stddev(open, 10))) * correlation(open, volume, 10))
+# Calculate daily returns
+df['returns'] = df['close'].pct_change()
+# Calculate standard deviation of opening prices over a 10-day period
+df['stddev_open_10'] = df['open'].rolling(window=10).std()
+# Delay the returns by 2 days
+df['delayed_returns_2'] = df['returns'].shift(2)
+# Rank the standard deviation of opening prices over the past 10 days and multiply by -1
+df['rank_stddev_open_10'] = df['stddev_open_10'].rank(axis=1, pct=True) * -1
+# Calculate the correlation between opening prices and volume over the past 10 days
+df['correlation_open_volume_10'] = df['open'].rolling(window=10).corr(df['volume'])
+# Calculate the alpha by multiplying the delayed returns, rank of standard deviation, and correlation
+df['alpha'] = df['delayed_returns_2'] * df['rank_stddev_open_10'] * df['correlation_open_volume_10']

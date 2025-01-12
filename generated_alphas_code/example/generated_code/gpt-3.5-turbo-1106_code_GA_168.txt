@@ -1,0 +1,7 @@
+
+
+# (Alpha description)
+# Calculate the time-series argmax of the closing price over a 10-day period
+df['ts_argmax_close_10'] = df['close'].rolling(window=10).apply(lambda x: np.argmax(x), raw=True)
+# Rank the results
+df['alpha'] = df['ts_argmax_close_10'].rank(axis=1, pct=True)

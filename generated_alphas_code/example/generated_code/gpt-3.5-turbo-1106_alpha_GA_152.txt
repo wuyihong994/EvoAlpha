@@ -1,0 +1,3 @@
+Mutated Alpha: (-1 * ts_max(rank(correlation(high, rank(delay(open, 5)), 10)), 5) + rank(product(rank(open), 4)) - rank(rank(rank(open)) * 2)
+
+Explanation: The mutate alpha is created by mutating the crossover alpha. We've replaced the ts_argmin function with delay, introducing a different time-series function to capture the delayed ranks of open prices. This mutation aims to diversify the alpha's behavior by altering the way it evaluates extremities within the time-series data, potentially enhancing its predictive capabilities.

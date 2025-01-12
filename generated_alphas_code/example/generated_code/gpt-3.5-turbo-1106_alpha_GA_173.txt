@@ -1,0 +1,1 @@
+Mutate Alpha: Delta of the cross-sectional rank of the standard deviation of the high prices over the past 10 days, multiplied by the correlation between the open prices and volume over the past 10 days, then multiplied by the rank of the open prices, and finally the result is added to the signedpower of the sum of ranks of volume over the past 5 days raised to the power of 0.5.

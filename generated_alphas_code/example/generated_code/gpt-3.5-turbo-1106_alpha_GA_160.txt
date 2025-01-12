@@ -1,0 +1,1 @@
+Mutate Alpha: ((-1 * rank(ts_argmin(rank(open), 5))) * correlation(high, volume, 10) + rank(product(rank(volume), 5)) * rank(rank(rank(open))))

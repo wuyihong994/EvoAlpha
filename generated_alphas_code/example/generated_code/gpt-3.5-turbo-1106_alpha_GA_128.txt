@@ -1,0 +1,1 @@
+(0.73 * rank(Ts_Rank(delay((-1 * returns), 6), 5))) + (-1 * correlation(open, volume, 10)) + close

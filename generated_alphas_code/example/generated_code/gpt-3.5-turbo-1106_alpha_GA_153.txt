@@ -1,0 +1,2 @@
+Mutate Alpha: (-1 * rank(rank(ts_min(rank(open), 5)) * signedpower(rank(sum(rank(volume), 5)), 0.5) * rank(rank(correlation(rank(volume), rank(high), 3)) / stddev(rank(high), 3)))
+The mutated alpha introduces a new element by dividing the original alpha by the standard deviation of the rank of high values over the past 3 days. This mutation aims to introduce a measure of volatility or dispersion into the alpha, potentially capturing additional information related to price movements and market dynamics.

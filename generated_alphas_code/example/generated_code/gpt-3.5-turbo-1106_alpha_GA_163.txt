@@ -1,0 +1,1 @@
+Mutate Alpha: ((-1 * rank(stddev(returns, 10))) * correlation(open, volume, 10))

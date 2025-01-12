@@ -1,0 +1,1 @@
+2.21 * ts_rank(delta(close, 5), 5)

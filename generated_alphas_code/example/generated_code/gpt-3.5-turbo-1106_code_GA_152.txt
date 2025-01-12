@@ -1,0 +1,20 @@
+
+
+# Calculate the cross-sectional rank of the delayed open prices over a 5-day period
+df['delayed_rank_open_5'] = df['open'].shift(5).rank(axis=1, pct=True)
+# Calculate the correlation between the high prices and the ranked delayed open prices over a 10-day period
+df['correlation_high_delayed_rank_open_10'] = df['high'].rolling(window=10).corr(df['delayed_rank_open_5'])
+# Calculate the rank of the correlation results
+df['rank_correlation'] = df['correlation_high_delayed_rank_open_10'].rank(axis=1, pct=True)
+# Calculate the time-series max over the past 5 days
+df['ts_max_rank_correlation'] = df['rank_correlation'].rolling(window=5).max()
+# Calculate the cross-sectional rank of the open prices
+df['rank_open'] = df['open'].rank(axis=1, pct=True)
+# Calculate the product of the cross-sectional rank of the open prices over a 4-day period
+df['product_rank_open_4'] = df['rank_open'].rolling(window=4).apply(lambda x: np.prod(x), raw=True)
+# Calculate the rank of the product results
+df['rank_product'] = df['product_rank_open_4'].rank(axis=1, pct=True)
+# Calculate the triple rank of the open prices
+df['triple_rank_open'] = df['rank_open'].rank(axis=1, pct=True) * 2
+# Calculate the final alpha
+df['alpha'] = -1 * df['ts_max_rank_correlation'] + df['rank_product'] - df['triple_rank_open']

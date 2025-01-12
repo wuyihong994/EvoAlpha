@@ -1,0 +1,1 @@
+Alpha Mutation: (sign(returns) * correlation(open, rank(volume), 10))

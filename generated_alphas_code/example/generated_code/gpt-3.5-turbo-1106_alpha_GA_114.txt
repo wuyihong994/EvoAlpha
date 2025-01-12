@@ -1,0 +1,1 @@
+(-1 * correlation(rank(high), signedpower(volume, 2), 5))

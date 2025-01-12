@@ -1,0 +1,2 @@
+(-1 * ts_max(rank(correlation(high, rank(vwap), 5)), 5)) / rank(stddev(adv5, 10))
+The mutate alpha results from adding a new input data variable "adv5" and incorporating the standard deviation ranking, creating a more comprehensive measure by considering the average daily dollar volume and its volatility. This mutation aims to introduce new information and enhance the predictive power of the alpha by incorporating additional market dynamics.

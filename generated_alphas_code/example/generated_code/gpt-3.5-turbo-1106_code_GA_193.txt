@@ -1,0 +1,14 @@
+
+
+# Calculate the rank of the open prices
+df['rank_open'] = df['open'].rank(axis=1, pct=True)
+# Calculate the signed power of the ranked open prices over the past 5 days
+df['signedpower_rank_open_5'] = pd.DataFrame(np.power(df['rank_open'], 5))
+# Calculate the time-series min of the ranked open prices over the past 5 days
+df['ts_min_rank_open_5'] = df['rank_open'].rolling(window=5).min()
+# Calculate the rank of the volume
+df['rank_volume'] = df['volume'].rank(axis=1, pct=True)
+# Scale the time-series min of the ranked open prices by the rank of the volume
+df['scale_ts_min_rank_open_5'] = df['ts_min_rank_open_5'] * df['rank_volume']
+# Calculate the final alpha
+df['alpha'] = -1 * df['signedpower_rank_open_5'] * df['scale_ts_min_rank_open_5']

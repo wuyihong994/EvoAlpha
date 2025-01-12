@@ -1,0 +1,14 @@
+
+
+# Calculate the daily change in volume over a 2-day period
+df['delta_volume_2'] = df['volume'] - df['volume'].shift(2)
+# Rank the change in volume
+df['rank_delta_volume_2'] = df['delta_volume_2'].rank(axis=1, pct=True)
+# Rank the high prices
+df['rank_high'] = df['high'].rank(axis=1, pct=True)
+# Calculate the correlation between the ranked change in volume and the ranked high prices over a 3-day period
+df['correlation_ranked'] = df['rank_delta_volume_2'].rolling(window=3).corr(df['rank_high'])
+# Rank the correlation results
+df['rank_correlation'] = df['correlation_ranked'].rank(axis=1, pct=True)
+# Sum the ranked correlation over a 3-day period, then multiply by -1
+df['alpha'] = -1 * df['rank_correlation'].rolling(window=3).sum()

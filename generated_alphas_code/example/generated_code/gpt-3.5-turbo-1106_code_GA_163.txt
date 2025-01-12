@@ -1,0 +1,10 @@
+
+
+# Calculate daily returns
+df['returns'] = df['close'].pct_change()
+# Calculate standard deviation of returns over a 10-day period
+df['stddev_returns_10'] = df['returns'].rolling(window=10).std()
+# Calculate the correlation between open and volume over a 10-day period
+df['correlation_open_volume_10'] = df['open'].rolling(window=10).corr(df['volume'])
+# Mutate Alpha
+df['alpha'] = -1 * df['stddev_returns_10'].rank(axis=1, pct=True) * df['correlation_open_volume_10']

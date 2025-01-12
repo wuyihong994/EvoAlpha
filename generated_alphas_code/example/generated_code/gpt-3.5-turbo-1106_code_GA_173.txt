@@ -1,0 +1,16 @@
+
+
+# Calculate the standard deviation of high prices over the past 10 days
+df['stddev_high_10'] = df['high'].rolling(window=10, min_periods=10).std()
+# Calculate the correlation between open prices and volume over the past 10 days
+df['correlation_open_volume_10'] = df['open'].rolling(window=10, min_periods=10).corr(df['volume'])
+# Calculate the rank of open prices
+df['rank_open'] = df['open'].rolling(window=10, min_periods=10).apply(lambda x: pd.Series(x).rank(pct=True).iloc[-1], raw=True)
+# Calculate the sum of ranks of volume over the past 5 days
+df['sum_rank_volume_5'] = df['volume'].rolling(window=5, min_periods=5).sum().rolling(window=10, min_periods=10).apply(lambda x: pd.Series(x).rank(pct=True).iloc[-1], raw=True)
+# Calculate the signedpower of the sum of ranks of volume over the past 5 days raised to the power of 0.5
+df['signedpower_sum_rank_volume_5'] = df['sum_rank_volume_5'] ** 0.5
+# Calculate the delta of the cross-sectional rank of the standard deviation of high prices over the past 10 days
+df['delta_rank_stddev_high_10'] = df['stddev_high_10'].rolling(window=10, min_periods=10).apply(lambda x: pd.Series(x).rank(pct=True).diff().iloc[-1], raw=True)
+# Calculate the alpha
+df['alpha'] = df['delta_rank_stddev_high_10'] * df['correlation_open_volume_10'] * df['rank_open'] + df['signedpower_sum_rank_volume_5']

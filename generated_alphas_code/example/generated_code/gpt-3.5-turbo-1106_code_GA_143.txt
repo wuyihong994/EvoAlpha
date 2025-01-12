@@ -1,0 +1,13 @@
+
+
+# Calculate the cross-sectional rank of volume and high
+rank_volume = df['volume'].rank(axis=1, pct=True)
+rank_high = df['high'].rank(axis=1, pct=True)
+# Calculate the correlation rank over the past 3 days
+correlation_rank = rank_volume.rolling(window=3).corr(rank_high).rank(axis=1, pct=True)
+# Calculate the sum of the correlation rank over the past 3 days
+sum_corr_rank_3 = correlation_rank.rolling(window=3).sum()
+# Calculate the time-series max over the past 5 days
+ts_max_sum_corr_rank_3_5 = sum_corr_rank_3.rolling(window=5).max()
+# Calculate the absolute value and assign to the 'alpha' feature
+df['alpha'] = abs(-1 * ts_max_sum_corr_rank_3_5)

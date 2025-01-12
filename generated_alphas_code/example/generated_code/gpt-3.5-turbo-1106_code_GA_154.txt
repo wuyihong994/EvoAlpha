@@ -1,0 +1,13 @@
+
+
+# Mutate Alpha: delay(rank(correlation(volume, high, 5)), 3) - sum(volume, 10)
+# Calculate the correlation of volume and high over a 5-day period
+df['correlation_volume_high_5'] = df['volume'].rolling(window=5).corr(df['high'])
+# Rank the correlation over the entire time period
+df['rank_correlation_volume_high_5'] = df['correlation_volume_high_5'].rank(axis=1, pct=True)
+# Delay the ranked correlation by 3 days
+df['delayed_rank_correlation_volume_high_5'] = df['rank_correlation_volume_high_5'].shift(3)
+# Compute the sum of volume over a 10-day period
+df['sum_volume_10'] = df['volume'].rolling(window=10).sum()
+# Subtract the sum of volume from the delayed ranked correlation to get the alpha
+df['alpha'] = df['delayed_rank_correlation_volume_high_5'] - df['sum_volume_10']

@@ -1,0 +1,1 @@
+The mutated alpha: ((-1 * ts_max(rank(stddev(close, 10)), 5)) * correlation(open, volume, 10) * rank(open)

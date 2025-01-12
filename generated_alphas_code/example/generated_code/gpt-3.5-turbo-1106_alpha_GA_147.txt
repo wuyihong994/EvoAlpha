@@ -1,0 +1,1 @@
+(-1 * rank(ts_min(rank(high), 5)) + rank(product(rank(volume), 5))) * correlation(high, volume, 10) * returns

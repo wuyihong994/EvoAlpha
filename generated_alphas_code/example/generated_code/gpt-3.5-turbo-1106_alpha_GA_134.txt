@@ -1,0 +1,1 @@
+(delta((-1 * rank(stddev(high, 10))) * correlation(open, volume, 10) * rank(open), 5))

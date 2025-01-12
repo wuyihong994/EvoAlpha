@@ -1,0 +1,14 @@
+
+
+# Calculate daily returns
+df['returns'] = df['close'].pct_change()
+# Calculate the 3-day returns delta and rank it
+df['delta_returns_3_rank'] = df['returns'].rolling(window=3).apply(lambda x: (x[-1] - x[0]), raw=True).rank(axis=1, pct=True)
+# Rank the high and volume, calculate their correlation, and then rank the results
+df['rank_high'] = df['high'].rank(axis=1, pct=True)
+df['rank_volume'] = df['volume'].rank(axis=1, pct=True)
+df['correlation_rank'] = (df['rank_high'].rolling(window=3).corr(df['rank_volume'])).rank(axis=1, pct=True)
+# Calculate the sum of the ranked correlation over the past 3 days
+df['sum_rank_correlation_3'] = df['correlation_rank'].rolling(window=3).sum()
+# Calculate the final alpha
+df['alpha'] = -1 * df['delta_returns_3_rank'] * df['sum_rank_correlation_3']

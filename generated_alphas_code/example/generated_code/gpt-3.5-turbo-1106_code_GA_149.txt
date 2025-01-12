@@ -1,0 +1,22 @@
+
+
+# Calculate the rank of the open price
+df['rank_open'] = df['open'].rank(axis=1, pct=True)
+# Calculate the time-series min of the ranked open price over the past 5 days
+df['ts_min_rank_open_5'] = df['rank_open'].rolling(window=5).min()
+# Calculate the rank of the volume
+df['rank_volume'] = df['volume'].rank(axis=1, pct=True)
+# Calculate the sum of the rank of the volume over the past 5 days
+df['sum_rank_volume_5'] = df['rank_volume'].rolling(window=5).sum()
+# Calculate the rank of the sum of the rank of the volume over the past 5 days
+df['rank_sum_rank_volume_5'] = df['sum_rank_volume_5'].rank(axis=1, pct=True)
+# Calculate the signedpower of the rank of the sum of the rank of the volume over the past 5 days
+df['signedpower_rank_sum_rank_volume_5'] = df['rank_sum_rank_volume_5'] ** 0.5
+# Calculate the rank of the high price
+df['rank_high'] = df['high'].rank(axis=1, pct=True)
+# Calculate the correlation of the rank of the volume and the rank of the high price over the past 3 days
+df['correlation_rank_volume_high_3'] = df['rank_volume'].rolling(window=3).corr(df['rank_high'])
+# Calculate the rank of the correlation of the rank of the volume and the rank of the high price over the past 3 days
+df['rank_correlation_rank_volume_high_3'] = df['correlation_rank_volume_high_3'].rank(axis=1, pct=True)
+# Compute the final alpha
+df['alpha'] = -1 * (df['ts_min_rank_open_5'].rank(axis=1, pct=True) * df['signedpower_rank_sum_rank_volume_5'] * df['rank_correlation_rank_volume_high_3']).rank(axis=1, pct=True)

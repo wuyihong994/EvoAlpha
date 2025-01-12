@@ -1,0 +1,1 @@
+Mutate Alpha: ts_rank((-1 * rank(covariance(rank(volume), rank(vwap), 5))), 20)

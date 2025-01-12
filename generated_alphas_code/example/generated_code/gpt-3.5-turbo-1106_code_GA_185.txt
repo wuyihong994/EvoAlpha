@@ -1,0 +1,12 @@
+
+
+# Calculate the exponential moving average of the close price over a 10-day period
+df['ema_close_10'] = df['close'].ewm(span=10, adjust=False).mean()
+# Calculate the time-series rank of the exponential moving average over the past 5 days
+df['ts_rank_ema_close_10_5'] = df['ema_close_10'].rolling(window=5).apply(lambda x: (x[-1] - np.min(x)) / (np.max(x) - np.min(x)), raw=True)
+# Calculate the time-series standard deviation of the close price over the past 15 days
+df['stddev_close_15'] = df['close'].rolling(window=15).std()
+# Calculate the correlation between the time-series rank of the exponential moving average and the time-series standard deviation over the past 10 days
+df['correlation_rank_ema_stddev_10'] = df['ts_rank_ema_close_10_5'].rolling(window=10).corr(df['stddev_close_15'])
+# Create the alpha feature by taking the signed power of the correlation
+df['alpha'] = pd.DataFrame(np.sign(df['correlation_rank_ema_stddev_10']) * (df['correlation_rank_ema_stddev_10'] ** 2))

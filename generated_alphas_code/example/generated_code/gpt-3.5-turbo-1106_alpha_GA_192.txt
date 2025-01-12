@@ -1,0 +1,1 @@
+sum((-1 * rank(stddev(rank(high), 10))) * correlation(rank(open), volume, 10), 15) * rank(volume)

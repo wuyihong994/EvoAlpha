@@ -1,0 +1,4 @@
+Mutate Alpha:
+(-1 * sum(rank(correlation(rank(delta(volume, 2)), rank(high), 3)), 3))
+
+The new alpha is mutated by replacing the original correlation of rank(volume) with rank(delta(volume, 2)), which incorporates a different time-series manipulation and introduces a mutation to enhance diversity in the alpha factor.

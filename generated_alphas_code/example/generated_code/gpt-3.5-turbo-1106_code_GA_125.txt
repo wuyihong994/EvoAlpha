@@ -1,0 +1,12 @@
+
+
+# Calculate the standard deviation of high prices over a 10-day period
+df['stddev_high_10'] = df['high'].rolling(window=10).std()
+# Calculate the cross-sectional rank of the standard deviation
+df['rank_stddev_high_10'] = df['stddev_high_10'].rank(pct=True, axis=1)
+# Calculate the time-serial correlation of open prices and volume over a 10-day period
+df['correlation_open_volume_10'] = df['open'].rolling(window=10).corr(df['volume'])
+# Calculate the cross-sectional rank of open prices
+df['rank_open'] = df['open'].rank(pct=True, axis=1)
+# Calculate the alpha
+df['alpha'] = (-1 * df['rank_stddev_high_10']) * df['correlation_open_volume_10'] * df['rank_open']

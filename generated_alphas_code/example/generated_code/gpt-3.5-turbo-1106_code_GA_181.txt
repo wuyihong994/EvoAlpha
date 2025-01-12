@@ -1,0 +1,12 @@
+
+
+# Rank the opening prices
+df['rank_open'] = df['open'].rank(axis=1, pct=True)
+# Calculate the minimum rank of opening prices over the past 5 days
+df['ts_min_rank_open_5'] = df['rank_open'].rolling(window=5).min()
+# Rank the minimum ranks and apply signed power
+df['rank_signedpower'] = df['ts_min_rank_open_5'].rank(axis=1, pct=True) * (df['volume'].rank(axis=1, pct=True).rolling(window=5).sum().rank(axis=1, pct=True) ** 0.5)
+# Rank the volume and high prices and calculate their correlation over the past 3 days
+df['correlation_volume_high_3'] = df['volume'].rank(axis=1, pct=True).rolling(window=3).corr(df['high'].rank(axis=1, pct=True))
+# Combine all factors and apply the final rank
+df['alpha'] = -1 * df['rank_signedpower'].rank(axis=1, pct=True) * df['correlation_volume_high_3']

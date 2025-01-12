@@ -1,0 +1,22 @@
+
+
+# Calculate the rank of the open prices
+df['rank_open'] = df['open'].rank(axis=1, pct=True)
+# Delay the rank of open prices by 3 days
+df['delayed_rank_open'] = df['rank_open'].shift(3)
+# Calculate the time-series min over the past 5 days of the delayed rank of open prices
+df['ts_argmin_delayed_rank_open'] = df['delayed_rank_open'].rolling(window=5).min()
+# Rank the results and multiply by -1
+df['alpha_part1'] = -1 * df['ts_argmin_delayed_rank_open'].rank(axis=1, pct=True)
+# Calculate the rank of open prices
+df['rank_rank_open'] = df['rank_open'].rank(axis=1, pct=True)
+# Rank the rank of open prices
+df['rank_rank_rank_open'] = df['rank_rank_open'].rank(axis=1, pct=True)
+# Calculate the correlation between high prices and the rank of volume over the past 10 days
+df['correlation_high_rank_volume_10'] = df['high'].rolling(window=10).corr(df['volume'].rank(axis=1, pct=True))
+# Calculate the time-series max over the past 5 days of the correlation
+df['ts_max_correlation'] = df['correlation_high_rank_volume_10'].rolling(window=5).max()
+# Rank the results
+df['alpha_part2'] = df['ts_max_correlation'].rank(axis=1, pct=True)
+# Combine the parts of the alpha formula
+df['alpha'] = df['alpha_part1'] + df['rank_rank_rank_open'] * df['alpha_part2']

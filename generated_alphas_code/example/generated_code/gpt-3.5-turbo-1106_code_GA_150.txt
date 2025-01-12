@@ -1,0 +1,4 @@
+
+
+# Mutate Alpha: abs((-1 * df['high'].rolling(window=10).std().rank(axis=1, pct=True)) - df['volume'].rank(axis=1, pct=True).rolling(window=5).corr(df['vwap'].rank(axis=1, pct=True)).rank(axis=1, pct=True).rolling(window=5).max())
+df['alpha'] = abs((-1 * df['high'].rolling(window=10).std().rank(axis=1, pct=True)) - df['volume'].rank(axis=1, pct=True).rolling(window=5).corr(df['vwap'].rank(axis=1, pct=True)).rank(axis=1, pct=True).rolling(window=5).max())

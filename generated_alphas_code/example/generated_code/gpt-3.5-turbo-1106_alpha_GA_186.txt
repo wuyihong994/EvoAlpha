@@ -1,0 +1,1 @@
+The mutated alpha: sum((-1 * rank(stddev(high, 10))) * correlation(rank(volume), open, 10), 15)

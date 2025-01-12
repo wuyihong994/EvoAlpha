@@ -1,0 +1,12 @@
+
+
+# Calculate the daily returns
+df['returns'] = df['close'].pct_change()
+# Calculate the rank of the opening prices
+df['rank_open'] = df['open'].rank(axis=1, pct=True)
+# Calculate the rank of the 3-day returns
+df['rank_delta_returns_3'] = df['returns'].rolling(window=3).apply(lambda x: (x[-1] - x[0]), raw=True).rank(axis=1, pct=True)
+# Calculate the covariance of the ranked opening prices and ranked 3-day returns over the past 4 days
+df['covariance_alpha'] = df['rank_open'].rolling(window=4).cov(df['rank_delta_returns_3'])
+# Calculate the negative rank of the covariance
+df['alpha'] = -1 * df['covariance_alpha'].rank(axis=1, pct=True)

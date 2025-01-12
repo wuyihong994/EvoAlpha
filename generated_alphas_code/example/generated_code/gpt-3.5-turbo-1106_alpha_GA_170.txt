@@ -1,0 +1,2 @@
+Mutate Alpha: (-1 * rank(abs(high)))
+Mutate Explanation: I mutated the crossover alpha by replacing the covariance and correlation functions with the abs function, simplifying the statistical computation to the absolute value of the high price rank. This mutation aims to introduce a different type of statistical analysis focusing solely on the high price, potentially providing a different aspect of predictive power in the alpha factor.

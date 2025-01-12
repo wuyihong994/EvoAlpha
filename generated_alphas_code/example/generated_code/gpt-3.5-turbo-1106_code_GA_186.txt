@@ -1,0 +1,10 @@
+
+
+# Calculate the standard deviation of high prices over a 10-day period and take its negative rank
+df['rank_stddev_high_10'] = -1 * df['high'].rolling(window=10).std().rank(axis=1, pct=True)
+# Calculate the rank of volume
+df['rank_volume'] = df['volume'].rank(axis=1, pct=True)
+# Calculate the correlation between the rank of volume and open prices over a 10-day period
+df['correlation_rank_volume_open_10'] = df['rank_volume'].rolling(window=10).corr(df['open'])
+# Sum the mutated alpha factor over a 15-day period
+df['alpha'] = df['rank_stddev_high_10'] * df['correlation_rank_volume_open_10'].rolling(window=15).sum()

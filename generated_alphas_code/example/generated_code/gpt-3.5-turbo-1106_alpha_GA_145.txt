@@ -1,0 +1,1 @@
+Mutate Alpha: abs(delta(close, 5)) * ts_min(rank(correlation(volume, rank(close), 5)), 10)

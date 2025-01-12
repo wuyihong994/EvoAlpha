@@ -1,0 +1,3 @@
+The mutated alpha obtained is:
+Mutated Alpha: signedpower(rank(stddev(open, 10)), 3) * ts_rank(volume, 5)
+In this mutated alpha, we have replaced the correlation of high and volume with the time-series rank of volume over the past 5 days. Additionally, we introduced a new function, signedpower, to raise the rank of the standard deviation of opening prices by 3. These alterations aim to introduce new predictive signals and change the interpretation of the original alpha.

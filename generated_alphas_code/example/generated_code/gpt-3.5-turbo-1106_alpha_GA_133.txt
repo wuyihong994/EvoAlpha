@@ -1,0 +1,1 @@
+(-1 * rank(rank(ts_min(rank(open), 5)) + rank(product(rank(volume), 5))) + rank(product(rank(volume), 5)) + rank(scale(rank(rank(open)), 2))

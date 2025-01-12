@@ -1,0 +1,16 @@
+
+
+# Calculate daily returns
+df['returns'] = df['close'].pct_change()
+# Calculate the 3-day delta of returns and rank the results
+df['delta_returns_3'] = df['returns'].diff(3)
+df['rank_delta_returns_3'] = df['delta_returns_3'].rank(axis=1, pct=True)
+# Calculate the correlation between high and volume over a 10-day period
+df['correlation_high_volume_10'] = df['high'].rolling(window=10).corr(df['volume'])
+# Calculate the correlation between open and volume over a 10-day period
+df['correlation_open_volume_10'] = df['open'].rolling(window=10).corr(df['volume'])
+# Calculate the standard deviation of low prices over a 5-day period and rank the results over a 7-day period
+df['stddev_low_5'] = df['low'].rolling(window=5).std()
+df['ts_rank_stddev_low_5_7'] = df['stddev_low_5'].rolling(window=7).apply(lambda x: (x[-1] - np.min(x)) / (np.max(x) - np.min(x)), raw=True)
+# Calculate the alpha factor
+df['alpha'] = (((-1 * df['rank_delta_returns_3']) * df['correlation_high_volume_10']) * df['correlation_open_volume_10'] + df['ts_rank_stddev_low_5_7'])

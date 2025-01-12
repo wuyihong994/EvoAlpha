@@ -1,0 +1,4 @@
+
+
+# Mutate Alpha: (-1 * ts_max(rank(rank(rank(df['open']))), 5) - delta(df['close'], 2))
+df['alpha'] = -1 * df['open'].rank(axis=1, pct=True).rank(axis=1, pct=True).rank(axis=1, pct=True).rolling(window=5).max() - df['close'].diff(2)

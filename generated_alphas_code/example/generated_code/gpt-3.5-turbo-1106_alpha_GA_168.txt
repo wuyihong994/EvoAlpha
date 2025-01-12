@@ -1,0 +1,1 @@
+A potential mutation of the crossover alpha could be achieved by introducing a new time-series function, such as ts_argmax, to capture the peak points of certain stock metrics over a specific time span. This mutation aims to bring in a new dimension of information related to the extreme values of stock data, potentially enhancing the predictive power of the alpha factor.

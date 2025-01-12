@@ -1,0 +1,2 @@
+(-1 * sum(rank(correlation(rank(open), rank(high), 3)), 3)) + rank(ts_argmax(rank(open), 5)) - rank(product(rank(volume), 5))
+Explanation: In the mutate process, I replaced the ts_argmin function with ts_argmax, introducing a different time-series function to capture the maximum rank of the open prices. This mutation aims to diversify the alpha's behavior by altering the way it evaluates extremities within the time-series data, potentially enhancing its predictive capabilities.

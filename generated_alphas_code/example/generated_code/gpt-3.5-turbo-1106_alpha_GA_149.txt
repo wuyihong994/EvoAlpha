@@ -1,0 +1,4 @@
+Mutate Alpha: 
+                 (-1 * rank(rank(ts_min(rank(open), 5)) * signedpower(rank(sum(rank(volume), 5)), 0.5) * rank(rank(correlation(rank(volume), rank(high), 3)))
+
+               The mutate alpha introduces the signedpower function, raising the sum of ranks of volume over the past 5 days to the power of 0.5. This mutation aims to introduce a non-linear transformation to the existing crossover alpha, potentially capturing more complex patterns in the relationships between volume and price movements.

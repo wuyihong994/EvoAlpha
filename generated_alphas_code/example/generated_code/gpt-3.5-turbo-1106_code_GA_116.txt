@@ -1,0 +1,18 @@
+
+
+# Calculate the daily returns
+df['returns'] = df['close'].pct_change()
+# Calculate the rank of the returns
+df['rank_returns'] = df['returns'].rank(axis=1, pct=True)
+# Calculate the rank of the high prices
+df['rank_high'] = df['high'].rank(axis=1, pct=True)
+# Calculate the correlation of the rank of returns and the rank of high prices over the past 3 days
+df['correlation_rank_returns_rank_high_3'] = df['rank_returns'].rolling(window=3).corr(df['rank_high'])
+# Rank the correlation results over the past 3 days
+df['rank_correlation_rank_returns_rank_high_3'] = df['correlation_rank_returns_rank_high_3'].rank(axis=1, pct=True)
+# Calculate the sum of the ranked correlation over the past 3 days
+df['sum_rank_correlation_rank_returns_rank_high_3'] = df['rank_correlation_rank_returns_rank_high_3'].rolling(window=3).sum()
+# Calculate the ranked product of the returns over the past 5 days
+df['ranked_product_returns_5'] = df['rank_returns'].rolling(window=5).apply(lambda x: np.prod(x), raw=True)
+# Calculate the final alpha
+df['alpha'] = (-1 * df['sum_rank_correlation_rank_returns_rank_high_3']) / df['ranked_product_returns_5']

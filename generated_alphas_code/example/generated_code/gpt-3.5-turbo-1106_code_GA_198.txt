@@ -1,0 +1,14 @@
+
+
+# Calculate the rolling minimum of the close price over the past 8 days
+df['ts_min_close_8'] = df['close'].rolling(window=8).min()
+# Calculate the standard deviation of the rolling minimum of the close price over the past 5 days
+df['stddev_ts_min_close_8_5'] = df['ts_min_close_8'].rolling(window=5).std()
+# Rank the standard deviation and multiply by -1
+df['rank_stddev_ts_min_close_8_5'] = -1 * pd.DataFrame(df['stddev_ts_min_close_8_5']).rank(axis=1, pct=True)
+# Rank the volume and calculate the correlation with the high price over the past 10 days
+df['rank_volume'] = df['volume'].rank(axis=1, pct=True)
+df['correlation_rank_volume_high_10'] = df['rank_volume'].rolling(window=10).corr(df['high'])
+# Calculate the sum of the product of the rank of the standard deviation and the correlation over the past 25 days
+df['alpha'] = df['rank_stddev_ts_min_close_8_5'] * df['correlation_rank_volume_high_10']
+df['alpha'] = df['alpha'].rolling(window=25).sum()

@@ -1,0 +1,1 @@
+Mutate Alpha: abs((-1 * rank(stddev(high, 10))) - ts_max(rank(correlation(rank(volume), rank(vwap), 5)), 5))

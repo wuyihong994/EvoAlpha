@@ -1,0 +1,19 @@
+
+
+# Rank the high and volume features
+df['rank_high'] = df['high'].rank(axis=1, pct=True)
+df['rank_volume'] = df['volume'].rank(axis=1, pct=True)
+# Calculate the correlation of the ranked high and volume over the past 3 days
+df['correlation_rank'] = df['rank_high'].rolling(window=3).corr(df['rank_volume'])
+# Rank the correlation results
+df['rank_correlation'] = df['correlation_rank'].rank(axis=1, pct=True)
+# Sum the ranked correlation over the past 3 days
+df['sum_rank_correlation_3'] = df['rank_correlation'].rolling(window=3).sum()
+# Calculate the product of volume over the past 5 days
+df['product_volume_5'] = df['volume'].rolling(window=5).apply(lambda x: np.prod(x), raw=True)
+# Sum the product of volume over the past 5 days
+df['sum_product_volume_5'] = df['product_volume_5'].rolling(window=5).sum()
+# Rank the sum of product of volume over the past 5 days
+df['rank_sum_product_volume_5'] = df['sum_product_volume_5'].rank(axis=1, pct=True)
+# Calculate the final alpha
+df['alpha'] = (-1 * df['sum_rank_correlation_3']) / df['rank_sum_product_volume_5']
