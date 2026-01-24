@@ -15,4 +15,13 @@ EvoAlpha aims to address the issues present in previous formulaic alpha mining m
 * the inflexibility and inconvenience of relying on external parsers. 
 
 EvoAlpha utilizes the external knowledge of LLMs to enhance EAs, therefore effectively narrowing the exploration space. By leveraging the powerful capabilities of LLMs, EvoAlpha takes the intrinsic semantic information of alphas into account during the evolutionary process, enabling the generation of more high-quality and diverse alphas with financial meaning. Moreover, we also utilize LLMs to convert these alphas into codes, making them easier to evaluate and apply.
-=======
+
+## Important Reminder
+
+We are currently in the process of organizing and refining the codebase for this project. For the time being, we have released the examples and prompt templates for reference and preliminary use.
+
+The alphas mined through the methods in this repository are for reference only. Rigorous and detailed evaluation (including but not limited to backtesting under multiple market conditions, robustness verification, and risk adjustment) is required before any practical application in quantitative investment strategies.
+
+Our method only focuses on **mining alphas with LLMs**; the rigorous evaluation, selection and application of these alphas in actual investment have not yet been thoroughly explored, which will be the focus of our research team's follow-up work. Therefore, please do not use these alphas for investment without strict testing and evaluation.
+
+**Investment Disclaimer**: All content in this repository is for academic and research purposes only and does not constitute any investment advice, investment recommendation or transaction suggestion. Investment involves inherent risks, and any investment decision made based on the content of this repository shall be at the investor's own risk.
