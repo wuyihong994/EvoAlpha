@@ -15,3 +15,4 @@ EvoAlpha aims to address the issues present in previous formulaic alpha mining m
 * the inflexibility and inconvenience of relying on external parsers. 
 
 EvoAlpha utilizes the external knowledge of LLMs to enhance EAs, therefore effectively narrowing the exploration space. By leveraging the powerful capabilities of LLMs, EvoAlpha takes the intrinsic semantic information of alphas into account during the evolutionary process, enabling the generation of more high-quality and diverse alphas with financial meaning. Moreover, we also utilize LLMs to convert these alphas into codes, making them easier to evaluate and apply.
+=======
