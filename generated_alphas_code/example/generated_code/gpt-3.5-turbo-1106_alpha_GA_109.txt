@@ -1,1 +1,0 @@
-(-1 * sum(rank(correlation(rank(volume), rank(high), 3)), 3))

@@ -1,1 +1,0 @@
-log(abs(rank(covariance(rank(high), rank(volume), 5))) * delta(volume, 10))

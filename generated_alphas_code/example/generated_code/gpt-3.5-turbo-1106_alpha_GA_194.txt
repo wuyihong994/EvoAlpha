@@ -1,1 +1,0 @@
-(-1 * ts_max(rank(correlation(high, rank(volume), 10)), 5)) * correlation(high, volume, 10) * log(adv5)

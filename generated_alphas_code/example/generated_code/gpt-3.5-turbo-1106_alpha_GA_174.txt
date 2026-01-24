@@ -1,1 +1,0 @@
-Mutate Alpha: ((-1 * ts_min(rank(stddev(high, 10)), 5)) * correlation(high, rank(volume), 10))

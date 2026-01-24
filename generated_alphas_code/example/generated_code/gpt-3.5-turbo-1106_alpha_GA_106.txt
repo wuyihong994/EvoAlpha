@@ -1,1 +1,0 @@
-(((-1 * rank(delta(returns, 3))) * correlation(high, volume, 10)) * correlation(open, volume, 10) + ts_rank(stddev(low, 5), 7))

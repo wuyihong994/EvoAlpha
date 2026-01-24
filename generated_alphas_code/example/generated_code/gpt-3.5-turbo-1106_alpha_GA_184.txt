@@ -1,1 +1,0 @@
-Mutated Alpha : (-1 * rank(rank(ts_min(rank(open), 5)) * signedpower(rank(sum(rank(volume), 5)), 0.5) * ts_max(rank(correlation(volume, rank(high), 10)), 5)) / stddev(high, 10)

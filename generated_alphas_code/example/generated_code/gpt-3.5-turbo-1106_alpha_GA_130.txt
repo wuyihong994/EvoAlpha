@@ -1,2 +1,0 @@
-(-1 * rank(ts_argmin(rank(open), 5)) + rank(product(rank(volume), 5)) + rank(rank(rank(open)))
-Explanation: The mutate alpha is created by mutating the crossover alpha. We've replaced the ts_min function with ts_argmin, introducing a different time-series function to capture the minimum rank of the open prices. This mutation aims to diversify the alpha's behavior by altering the way it evaluates extremities within the time-series data, potentially enhancing its predictive capabilities.

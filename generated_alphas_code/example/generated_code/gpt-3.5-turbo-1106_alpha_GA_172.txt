@@ -1,1 +1,0 @@
-ts_min((-1 * rank(stddev(open, 10))) * correlation(rank(volume), rank(high), 3), 3)

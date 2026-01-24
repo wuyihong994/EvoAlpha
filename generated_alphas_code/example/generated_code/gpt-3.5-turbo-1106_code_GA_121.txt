@@ -1,7 +1,0 @@
-
-
-# Mutate Alpha: signedpower((-1 * correlation(high, rank(volume), 5)) * delay(open, 10), 2)
-df['rank_volume'] = df['volume'].rank(axis=1, pct=True)
-df['correlation'] = df['high'].rolling(window=5).corr(df['rank_volume'])
-df['delay_open_10'] = df['open'].shift(10)
-df['alpha'] = pd.DataFrame(((-1 * df['correlation']) * df['delay_open_10']) ** 2)

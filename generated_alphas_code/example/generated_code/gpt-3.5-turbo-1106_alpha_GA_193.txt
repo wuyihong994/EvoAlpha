@@ -1,1 +1,0 @@
-((-1 * signedpower(rank(open), 5)) * scale(ts_min(rank(open), 5), rank(volume)) )

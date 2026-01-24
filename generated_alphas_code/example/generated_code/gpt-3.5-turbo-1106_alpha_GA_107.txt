@@ -1,1 +1,0 @@
-((-1 * rank(delta(returns, 3))) * sum(rank(correlation(rank(high), rank(volume), 3)), 3))

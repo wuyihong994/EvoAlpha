@@ -1,1 +1,0 @@
-(abs((-1 * ts_max(sum(rank(correlation(rank(volume), rank(high), 3)), 3), 5)))

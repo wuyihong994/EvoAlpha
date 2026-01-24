@@ -1,9 +1,0 @@
-
-
-# Rank the volume and vwap
-rank_volume = df['volume'].rank(axis=1, pct=True)
-rank_vwap = df['vwap'].rank(axis=1, pct=True)
-# Calculate the covariance of the ranked volume and vwap over the past 5 days
-covariance_ranked = rank_volume.rolling(window=5).cov(rank_vwap)
-# Multiply by -1 and rank the result over the past 20 days
-df['alpha'] = -1 * covariance_ranked.rank(axis=1, pct=True, method='first').rolling(window=20).apply(lambda x: np.argmax(x), raw=True)

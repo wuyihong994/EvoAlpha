@@ -1,1 +1,0 @@
-(-1 * rank(ts_argmin(delay(rank(open), 3), 5)) + rank(rank(rank(open))) * ts_max(rank(correlation(high, rank(volume), 10)), 5))

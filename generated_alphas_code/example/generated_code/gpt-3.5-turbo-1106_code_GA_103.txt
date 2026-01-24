@@ -1,7 +1,0 @@
-
-
-# (Alpha description)
-# Calculate the 5-day price change
-df['delta_close_5'] = df['close'].diff(5)
-# Rank the 5-day price change over the past 5 days and multiply by 2.21
-df['alpha'] = 2.21 * df['delta_close_5'].rolling(window=5).apply(lambda x: (x[-1] > x).sum() / 5, raw=True)

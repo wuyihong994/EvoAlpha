@@ -1,3 +1,0 @@
-Alpha for Mutation: ts_min((-1 * rank(stddev(open, 10))) * ts_rank(volume, 5) / delta(volume, 2) > ts_min(high, 5), 15)
-
-		Mutated Alpha: sum((-1 * rank(stddev(open, 10))) * ts_rank(volume, 5) / delta(volume, 2) > ts_min(high, 5), 20)

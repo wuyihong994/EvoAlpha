@@ -1,2 +1,0 @@
-(-1 * sum(rank(correlation(rank(high), rank(volume), 3)), 3)) / rank(sum(product(volume, 5), 5))
-                 This mutated alpha introduces a new component by including the product of volume over the past 5 days and then computing the sum, followed by ranking the result. Moreover, a new division operation with the ranked sum as the denominator has been incorporated. This mutation diversifies the alpha by including additional operators and functions.

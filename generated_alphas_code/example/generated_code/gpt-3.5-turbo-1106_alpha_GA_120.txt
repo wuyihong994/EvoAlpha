@@ -1,2 +1,0 @@
-Mutate Alpha: (-1 * sum(rank(correlation(rank(returns), rank(high), 3)), 3)) * ts_rank(open, 10)
-    By adding the time-series rank of opening price over the past 10 days to the crossover alpha, we introduce a new element to the alpha factor. This mutation aims to incorporate a longer-term perspective on the opening price's rank, potentially capturing trends or patterns over an extended period.

@@ -1,1 +1,0 @@
-rank(ts_min(rank(open), 5)) * signedpower(rank(sum(rank(volume), 5)), 0.5) * rank(rank(correlation(rank(volume), rank(high), 3))

@@ -1,4 +1,0 @@
-
-
-# Mutate Alpha: (-1 * rank(abs(high)))
-df['alpha'] = -1 * df['high'].abs().rank(axis=1, pct=True)

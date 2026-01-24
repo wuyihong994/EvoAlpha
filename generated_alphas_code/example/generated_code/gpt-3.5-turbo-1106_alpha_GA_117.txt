@@ -1,1 +1,0 @@
-((signedpower(rank(stddev(high, 5)), 0.5)) - (correlation(high, delay(close, 3), 10) * scale(rank(volume), 2)) * abs(rank(open)))

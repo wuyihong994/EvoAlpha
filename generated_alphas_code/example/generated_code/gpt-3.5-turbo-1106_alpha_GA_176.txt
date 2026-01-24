@@ -1,1 +1,0 @@
-(-1 * rank(covariance(rank(volume), rank(high), 5)))

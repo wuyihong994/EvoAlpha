@@ -1,1 +1,0 @@
-Mutate Alpha: (delay(returns, 2) * (-1 * rank(stddev(open, 10))) * correlation(open, volume, 10))

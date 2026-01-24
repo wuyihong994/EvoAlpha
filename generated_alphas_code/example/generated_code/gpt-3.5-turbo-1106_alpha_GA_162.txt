@@ -1,1 +1,0 @@
-Mutated alpha: ts_min((-1 * rank(stddev(open, 10))) * correlation(rank(volume), high, 10), 15) + rank(ts_min(open, 5))

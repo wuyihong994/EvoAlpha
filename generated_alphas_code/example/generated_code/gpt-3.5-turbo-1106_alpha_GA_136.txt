@@ -1,1 +1,0 @@
-Mutate Alpha: ((-1 * rank(delta(open, 15))) * correlation(open, volume, 10) * rank(open) * returns)

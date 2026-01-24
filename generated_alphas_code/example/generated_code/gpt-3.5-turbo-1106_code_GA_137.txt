@@ -1,9 +1,0 @@
-
-
-# Mutate Alpha: (-1 * ts_rank(product(rank(volume), 10), 6))
-# Calculate the rank of the volume feature
-df['rank_volume'] = df['volume'].rank(axis=1, pct=True)
-# Calculate the product of the ranked volume over the past 10 days
-df['product_rank_volume_10'] = df['rank_volume'].rolling(window=10).apply(lambda x: np.prod(x), raw=True)
-# Calculate the time-series rank of the product over the past 6 days and apply the final transformation
-df['alpha'] = -1 * df['product_rank_volume_10'].rolling(window=6).apply(lambda x: np.argsort(np.argsort(x))[-1], raw=True)

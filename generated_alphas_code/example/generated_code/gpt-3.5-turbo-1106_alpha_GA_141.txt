@@ -1,1 +1,0 @@
-(-1 * rank(covariance(rank(high), rank(stddev(high, 10)), 5)) * correlation(high, volume, 10) * returns

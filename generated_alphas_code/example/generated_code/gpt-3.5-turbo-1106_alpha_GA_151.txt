@@ -1,1 +1,0 @@
-Mutated Alpha: rank(stddev(open, 10)) * (delay(rank(volume), 5) * ts_argmax(covariance(rank(high), rank(volume), 5), 15))

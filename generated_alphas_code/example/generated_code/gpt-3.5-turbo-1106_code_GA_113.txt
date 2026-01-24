@@ -1,8 +1,0 @@
-
-
-# Calculate the minimum high prices over the past 3 days
-df['min_high_3'] = df['high'].rolling(window=3).min()
-# Calculate the lagged difference of 2 days
-df['delta_min_high_3_2'] = df['min_high_3'] - df['min_high_3'].shift(2)
-# Multiply the result by -1 to retain the negative correlation
-df['alpha'] = -1 * df['delta_min_high_3_2']

@@ -1,9 +1,0 @@
-
-
-# Calculate the standard deviation of the opening prices over a 10-day period and rank the results
-df['rank_stddev_open_10'] = df['open'].rolling(window=10).std().rank(axis=1, pct=True)
-# Rank the volume and calculate the correlation with the high prices over a 10-day period
-df['rank_volume'] = df['volume'].rank(axis=1, pct=True)
-df['correlation_rank_volume_high_10'] = df['rank_volume'].rolling(window=10).corr(df['high'])
-# Delay the result by 15 days and assign it to the new 'alpha' feature
-df['alpha'] = df['correlation_rank_volume_high_10'].shift(15) * (-1 * df['rank_stddev_open_10'])

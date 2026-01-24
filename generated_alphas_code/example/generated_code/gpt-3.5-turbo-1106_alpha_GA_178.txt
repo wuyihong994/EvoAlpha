@@ -1,1 +1,0 @@
-Mutate Alpha: (-1 * ts_max(rank(correlation(stddev(open, 10), rank(volume), 10)), 5)) + abs(delay(close, 1))

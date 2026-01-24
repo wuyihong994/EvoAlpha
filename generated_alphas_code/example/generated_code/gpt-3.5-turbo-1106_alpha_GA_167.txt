@@ -1,1 +1,0 @@
-ts_max((-1 * rank(stddev(open, 10))) * sum(rank(correlation(rank(volume), rank(high), 3)), 3), 15)

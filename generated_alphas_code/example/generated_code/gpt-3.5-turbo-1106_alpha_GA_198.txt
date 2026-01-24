@@ -1,1 +1,0 @@
-(sum((-1 * rank(stddev(ts_min(close, 8), 5))) * correlation(rank(volume), high, 10), 25))

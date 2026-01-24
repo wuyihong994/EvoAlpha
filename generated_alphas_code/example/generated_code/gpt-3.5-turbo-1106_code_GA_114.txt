@@ -1,8 +1,0 @@
-
-
-# Calculate the rank of high prices
-df['rank_high'] = df['high'].rank(axis=1, pct=True)
-# Compute the SignedPower factor of volume
-df['signedpower_volume'] = df['volume'] ** 2
-# Calculate the correlation between rank high and signedpower volume over the past 5 days and apply a negative sign
-df['alpha'] = -1 * df['rank_high'].rolling(window=5).corr(df['signedpower_volume'])
