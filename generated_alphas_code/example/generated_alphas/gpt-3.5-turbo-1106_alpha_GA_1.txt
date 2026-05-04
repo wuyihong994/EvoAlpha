@@ -1,0 +1,1 @@
+(-1 * rank(sum(open, 10))) * correlation(high, rank(volume), 5)

@@ -19,7 +19,25 @@ EvoAlpha utilizes the external knowledge of LLMs to enhance EAs, therefore effec
 
 ---
 
-**We are currently in the process of organizing and refining the codebase for this project, and the core code will be open-sourced subsequently.**
+## Note on Related Work and Development Timeline
+
+We note that there are recent studies similar to ours. These works are helpful for advancing the field.
+
+For clarity, we provide a brief timeline of the development of this project:
+
+* Aug 2024 – Core methodology completed; initial manuscript prepared and submitted
+
+* Oct 9, 2024 – Patent application filed: Application No. CN202411398006.9
+
+* Jan 28, 2025 – Patent publicly disclosed: Publication No. CN119379434A, publicly searchable
+
+* 2024–2025 – Ongoing submission and revision process
+
+* Sep 18, 2025 – Submitted to ICASSP2026
+
+* Jan 18, 2026 – Accepted by ICASSP2026: [Paper Link](https://ieeexplore.ieee.org/document/11463591)
+
+Due to the continuous submission process, earlier versions of this work were not made publicly available (e.g., via arXiv). We include this timeline to clarify the originality of our work. We welcome further discussion and believe that continued exploration in this direction will help advance the field.
 
 ---
 
